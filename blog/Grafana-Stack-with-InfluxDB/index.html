@@ -1,26 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title><![CDATA[Chenxi LI]]></title>
-  <subtitle><![CDATA[Hack of tech]]></subtitle>
-  <link href="/atom.xml" rel="self"/>
-  <link href="http://moremeds.github.io/"/>
-  <updated>2016-01-03T21:49:20.000Z</updated>
-  <id>http://moremeds.github.io/</id>
-  
-  <author>
-    <name><![CDATA[Chenxi Li]]></name>
-    
-  </author>
-  
-  <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title><![CDATA[Grafana Stack with InfluxDB]]></title>
-    <link href="http://moremeds.github.io/blog/Grafana-Stack-with-InfluxDB/"/>
-    <id>http://moremeds.github.io/blog/Grafana-Stack-with-InfluxDB/</id>
-    <published>2016-01-03T19:22:37.000Z</published>
-    <updated>2016-01-03T21:49:20.000Z</updated>
-    <content type="html"><![CDATA[<p>Collecting and analyzing metrics are the key to understand a system’s runtime behaviors and thus to provide a better guideline of optimization. As the user of a metrics system, you might want to collect metric and event with simple APIs, retrieve historical metric data, and view visualized metrics statistics.</p>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>Grafana Stack with InfluxDB · Chenxi LI</title><meta name="description" content="Collecting and analyzing metrics are the key to understand a system’s runtime behaviors and thus to provide a better guideline of optimization. As the user of a metrics system, you might want to collect metric and event with simple APIs, retrieve historical metric data, and view visualized metrics statistics.
+This article shows you how to build a metric system with StatsD, influxdb, and &lt;a href=&quot;http://grafana.org/&quot; target=&quot;_blank&quot; rel=&quot;exte"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/favicon.ico"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives" target="_self" class="nav-list-link">ARCHIVES</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li><li class="nav-list-item"><a href="https://github.com/moremeds" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Grafana Stack with InfluxDB</h1><div class="post-meta"><div class="post-time">Jan 3, 2016</div></div><div class="post-content"><p>Collecting and analyzing metrics are the key to understand a system’s runtime behaviors and thus to provide a better guideline of optimization. As the user of a metrics system, you might want to collect metric and event with simple APIs, retrieve historical metric data, and view visualized metrics statistics.</p>
 <p>This article shows you how to build a metric system with <a href="https://github.com/etsy/statsd" target="_blank" rel="external">StatsD</a>, <a href="https://influxdata.com/" target="_blank" rel="external">influxdb</a>, and <a href="http://grafana.org/" target="_blank" rel="external">Grafana</a>, as an example metrics system that composes of a client, a data storage, and visualization UI. There are many available open source packages.</p>
 <p><img src="/images/grafana/LogicFlow.png" width="60%" height="60%"></p>
 <a id="more"></a>
@@ -48,58 +27,12 @@
 <p><img src="/images/grafana/influxdbSetting.png" alt=""></p>
 <p>The <code>localhost</code> is the server where you installed the influxDB, and <code>8086</code> is the default port for querying data.</p>
 <p><strong>Please leave a comment if you have any questions or correct me if there is an update on the new change for these applications.</strong></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Collecting and analyzing metrics are the key to understand a system’s runtime behaviors and thus to provide a better guideline of optimization. As the user of a metrics system, you might want to collect metric and event with simple APIs, retrieve historical metric data, and view visualized metrics statistics.</p>
-<p>This article shows you how to build a metric system with <a href="https://github.com/etsy/statsd">StatsD</a>, <a href="https://influxdata.com/">influxdb</a>, and <a href="http://grafana.org/">Grafana</a>, as an example metrics system that composes of a client, a data storage, and visualization UI. There are many available open source packages.</p>
-<p><img src="/images/grafana/LogicFlow.png" width="60%" height="60%"></p>]]>
-    
-    </summary>
-    
-      <category term="grafana" scheme="http://moremeds.github.io/tags/grafana/"/>
-    
-      <category term="influxdb" scheme="http://moremeds.github.io/tags/influxdb/"/>
-    
-      <category term="statsd" scheme="http://moremeds.github.io/tags/statsd/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <link href="http://moremeds.github.io/blog/hello-world/"/>
-    <id>http://moremeds.github.io/blog/hello-world/</id>
-    <published>2016-01-03T19:18:21.000Z</published>
-    <updated>2016-01-03T19:18:21.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a> and my blog!</p>
-<p>This is my very first post. As part of my new year resolution, I would want to keep a track of my development on the upcoming year.</p>
-<p>Please check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. I will also keep updating on the following along with configuring this blog.</p>
-<p>A special thanks to the theme provider: <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank" rel="external">Apollo</a>.</p>
-<a id="more"></a>
-<h2 id="Create_a_new_post"><a href="#Create_a_new_post" class="headerlink" title="Create a new post"></a>Create a new post</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h2 id="Run_server"><a href="#Run_server" class="headerlink" title="Run server"></a>Run server</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server or $ hexo s</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h2 id="Generate_static_files"><a href="#Generate_static_files" class="headerlink" title="Generate static files"></a>Generate static files</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate or $ hexo g</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h2 id="Deploy_to_remote_sites"><a href="#Deploy_to_remote_sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy or hexo d</span><br></pre></td></tr></table></figure>
-<p>Also you can combine the command together as below:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo d -g</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a> and my blog!</p>
-<p>This is my very first post. As part of my new year resolution, I would want to keep a track of my development on the upcoming year.</p>
-<p>Please check <a href="https://hexo.io/docs/">documentation</a> for more info. I will also keep updating on the following along with configuring this blog.</p>
-<p>A special thanks to the theme provider: <a href="https://github.com/pinggod/hexo-theme-apollo">Apollo</a>.</p>]]>
-    
-    </summary>
-    
-      <category term="hexo" scheme="http://moremeds.github.io/tags/hexo/"/>
-    
-      <category term="intro" scheme="http://moremeds.github.io/tags/intro/"/>
-    
-      <category term="tutorial" scheme="http://moremeds.github.io/categories/tutorial/"/>
-    
-  </entry>
-  
-</feed>
+</div></article></div></section><footer><div class="paginator"><a class="prev"></a><a href="/blog/hello-world/" class="next">Older</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'chenxili';
+var disqus_identifier = 'blog/Grafana-Stack-with-InfluxDB/';
+var disqus_title = 'Grafana Stack with InfluxDB';
+var disqus_url = 'http://moremeds.github.io/blog/Grafana-Stack-with-InfluxDB/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//chenxili.disqus.com/count.js" async></script></footer><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>

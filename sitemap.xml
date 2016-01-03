@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://moremeds.github.io/blog/Grafana-Stack-with-InfluxDB/</loc>
+    <lastmod>2016-01-03T21:49:20.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://moremeds.github.io/blog/hello-world/</loc>
     <lastmod>2016-01-03T19:18:21.000Z</lastmod>
   </url>
