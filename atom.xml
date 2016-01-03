@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Hack of tech]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://moremeds.github.io/"/>
-  <updated>2016-01-03T21:49:20.000Z</updated>
+  <updated>2016-01-03T22:28:10.000Z</updated>
   <id>http://moremeds.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://moremeds.github.io/blog/Grafana-Stack-with-InfluxDB/"/>
     <id>http://moremeds.github.io/blog/Grafana-Stack-with-InfluxDB/</id>
     <published>2016-01-03T19:22:37.000Z</published>
-    <updated>2016-01-03T21:49:20.000Z</updated>
+    <updated>2016-01-03T22:28:10.000Z</updated>
     <content type="html"><![CDATA[<p>Collecting and analyzing metrics are the key to understand a system’s runtime behaviors and thus to provide a better guideline of optimization. As the user of a metrics system, you might want to collect metric and event with simple APIs, retrieve historical metric data, and view visualized metrics statistics.</p>
 <p>This article shows you how to build a metric system with <a href="https://github.com/etsy/statsd" target="_blank" rel="external">StatsD</a>, <a href="https://influxdata.com/" target="_blank" rel="external">influxdb</a>, and <a href="http://grafana.org/" target="_blank" rel="external">Grafana</a>, as an example metrics system that composes of a client, a data storage, and visualization UI. There are many available open source packages.</p>
 <p><img src="/images/grafana/LogicFlow.png" width="60%" height="60%"></p>
