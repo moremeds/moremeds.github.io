@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: apollo
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -72,4 +72,11 @@ deploy:
   repository: https://github.com/moremeds/moremeds.github.io.git
   branch: master
 
-disqus_shortname: chenxi_li
+disqus_shortname: chenxili
+disqus_show_comment_count: true
+
+github_user: moremeds
+github_repo: moremeds.github.io
+github_repo_count: 3
+github_show_profile_link: true
+github_skip_forks: true

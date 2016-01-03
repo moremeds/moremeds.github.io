@@ -1,0 +1,11 @@
+menu:
+    Blog: /
+    rss: /atom.xml
+    Github: https://github.com/moremeds
+
+favicon: /favicon.ico
+logo: /favicon.ico
+
+# comment
+disqus: chenxili
+duoshuo:
