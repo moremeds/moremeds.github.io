@@ -2,8 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://moremeds.github.io/blog/Querying-and-Templating-on-Grafana-with-InfluxDB/</loc>
+    <lastmod>2016-01-16T16:50:06.000Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://moremeds.github.io/blog/Grafana-Stack-with-InfluxDB/</loc>
-    <lastmod>2016-01-03T22:28:10.000Z</lastmod>
+    <lastmod>2016-01-16T16:14:10.000Z</lastmod>
   </url>
   
   <url>

@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Hack of tech]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://moremeds.github.io/"/>
-  <updated>2016-01-03T22:28:10.000Z</updated>
+  <updated>2016-01-16T16:50:06.000Z</updated>
   <id>http://moremeds.github.io/</id>
   
   <author>
@@ -15,11 +15,61 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[Querying and Templating on Grafana with InfluxDB]]></title>
+    <link href="http://moremeds.github.io/blog/Querying-and-Templating-on-Grafana-with-InfluxDB/"/>
+    <id>http://moremeds.github.io/blog/Querying-and-Templating-on-Grafana-with-InfluxDB/</id>
+    <published>2016-01-14T23:23:01.000Z</published>
+    <updated>2016-01-16T16:50:06.000Z</updated>
+    <content type="html"><![CDATA[<p>Using InfluxDB on Grafana is not quite common comparing to Graphite, another data source engine. Different data sources require different settings. The configuration process includes locating the measurements, finding the correct stats info, and filtering the result with refined condition.</p>
+ <a id="more"></a>
+<h2 id="Query"><a href="#Query" class="headerlink" title="Query"></a>Query</h2><p>The snapshot blow shows a configured graph with query, template variables, and alias patterns.</p>
+<p><strong>Editor tag filters</strong><br>To add a tag filter click the plus icon to the right of the <code>WHERE</code> condition. You can remove tag filters by clicking on the tag key and select <code>--remove tag filter--</code>.</p>
+<p><strong>Regex matching</strong><br>You can type in regex patterns for metric names or tag filter values, be sure to wrap the regex pattern in forward slashes <code>(/)</code>. Grafana will automatically adjust the filter tag condition to use the InfluxDB regex match condition operator <code>(=~)</code>.</p>
+<p><strong>Editor group by</strong><br>To group by a tag click the plus icon after the <code>GROUP BY ($interval)</code> text. Pick a tag from the dropdown that appears. You can remove the group by by clicking on the tag and then select <code>--remove group by--</code> from the dropdown.</p>
+<p>Alias patterns</p>
+<ul>
+<li><code>$m</code> = replaced with measurement name</li>
+<li><code>$measurement</code> = replaced with measurement name</li>
+<li><code>$col</code> = replaced with column name</li>
+<li><code>$tag_hostname</code> = replaced with the value of the hostname tag</li>
+<li>You can also use <code>[[tag_hostname]]</code> pattern replacement syntax</li>
+</ul>
+<h2 id="Variable_Templates"><a href="#Variable_Templates" class="headerlink" title="Variable Templates"></a>Variable Templates</h2><p>Below is the snapshot on the page to configure the variable template</p>
+<p><img src="/images/grafana/template.png" alt=""></p>
+<p>You can create a template variable in Grafana and have that variable filled with values from any InfluxDB metric exploration query. You can then use this variable in your InfluxDB metric queries. For example you can have a variable that contains all values for tag topologyName if you specify a query like this in the templating edit view.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.&#9;SHOW TAG VALUES WITH KEY = &#34;topologyName&#34;</span><br></pre></td></tr></table></figure>
+<p>You can also create nested variables. For example if you had another variable, for example env. Then you could have the hosts variable only show hosts from the current selected region with a query like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.&#9;SHOW TAG VALUES WITH KEY = &#34;hostname&#34;  WHERE env =~ /$env/</span><br></pre></td></tr></table></figure>
+<p>Additionally, the order of each variable template matters. You may refer to a former variable’s query results in a latter defined variable.</p>
+<h2 id="Little_Tips"><a href="#Little_Tips" class="headerlink" title="Little Tips"></a>Little Tips</h2><p>Basically, query and template variable are very easy to edit as long as you know what and where to find your data. Here is a few tipping points I summarized when I configured my Grafana.</p>
+<ol>
+<li>Try to use tag to generate the expressive name for measurement/table, this will make your life easier when you create template variable and form your own query</li>
+<li>When you want to select the multiple value in template variable, make sure you check All value tab and choose regex value for both <em><strong>multi format</strong></em> and <strong><em>all format</em></strong></li>
+<li>In the retention policy from InfluxDB, you configure the frequency you perform a housekeeping procedure to clean up out-dated data.</li>
+<li>For timer measurements, you will find a lot sub-metrics such as <strong>mean, last, max, or min</strong>. They are calculated by StatsD from a whole data set received in one flushing period. Ensure select the correct one when you query your graph.</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Using InfluxDB on Grafana is not quite common comparing to Graphite, another data source engine. Different data sources require different settings. The configuration process includes locating the measurements, finding the correct stats info, and filtering the result with refined condition.</p>]]>
+    
+    </summary>
+    
+      <category term="grafana" scheme="http://moremeds.github.io/tags/grafana/"/>
+    
+      <category term="influxdb" scheme="http://moremeds.github.io/tags/influxdb/"/>
+    
+      <category term="tutorial" scheme="http://moremeds.github.io/tags/tutorial/"/>
+    
+      <category term="tutorial" scheme="http://moremeds.github.io/categories/tutorial/"/>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[Grafana Stack with InfluxDB]]></title>
     <link href="http://moremeds.github.io/blog/Grafana-Stack-with-InfluxDB/"/>
     <id>http://moremeds.github.io/blog/Grafana-Stack-with-InfluxDB/</id>
     <published>2016-01-03T19:22:37.000Z</published>
-    <updated>2016-01-03T22:28:10.000Z</updated>
+    <updated>2016-01-16T16:14:10.000Z</updated>
     <content type="html"><![CDATA[<p>Collecting and analyzing metrics are the key to understand a system’s runtime behaviors and thus to provide a better guideline of optimization. As the user of a metrics system, you might want to collect metric and event with simple APIs, retrieve historical metric data, and view visualized metrics statistics.</p>
 <p>This article shows you how to build a metric system with <a href="https://github.com/etsy/statsd" target="_blank" rel="external">StatsD</a>, <a href="https://influxdata.com/" target="_blank" rel="external">influxdb</a>, and <a href="http://grafana.org/" target="_blank" rel="external">Grafana</a>, as an example metrics system that composes of a client, a data storage, and visualization UI. There are many available open source packages.</p>
 <p><img src="/images/grafana/LogicFlow.png" width="60%" height="60%"></p>
@@ -61,6 +111,8 @@
       <category term="influxdb" scheme="http://moremeds.github.io/tags/influxdb/"/>
     
       <category term="statsd" scheme="http://moremeds.github.io/tags/statsd/"/>
+    
+      <category term="tutorial" scheme="http://moremeds.github.io/categories/tutorial/"/>
     
   </entry>
   

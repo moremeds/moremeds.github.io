@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>Querying and Templating on Grafana with InfluxDB · Chenxi LI</title><meta name="description" content="Using InfluxDB on Grafana is not quite common comparing to Graphite, another data source engine. Different data sources require different settings. The configuration process includes locating the measurements, finding the correct stats info, and filtering the result with refined condition.
+ 
+QueryThe snapshot blow shows a configured graph with query, template variables, and alias patterns.
+Editor tag filtersTo add a tag filter click the plus icon to the right of the "><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" href="/favicon.ico"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/logo.ico"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives" target="_self" class="nav-list-link">ARCHIVES</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li><li class="nav-list-item"><a href="https://github.com/moremeds" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Querying and Templating on Grafana with InfluxDB</h1><div class="post-meta"><div class="post-time">Jan 14, 2016</div></div><div class="post-content"><p>Using InfluxDB on Grafana is not quite common comparing to Graphite, another data source engine. Different data sources require different settings. The configuration process includes locating the measurements, finding the correct stats info, and filtering the result with refined condition.</p>
+ <a id="more"></a>
+<h2 id="Query"><a href="#Query" class="headerlink" title="Query"></a>Query</h2><p>The snapshot blow shows a configured graph with query, template variables, and alias patterns.</p>
+<p><strong>Editor tag filters</strong><br>To add a tag filter click the plus icon to the right of the <code>WHERE</code> condition. You can remove tag filters by clicking on the tag key and select <code>--remove tag filter--</code>.</p>
+<p><strong>Regex matching</strong><br>You can type in regex patterns for metric names or tag filter values, be sure to wrap the regex pattern in forward slashes <code>(/)</code>. Grafana will automatically adjust the filter tag condition to use the InfluxDB regex match condition operator <code>(=~)</code>.</p>
+<p><strong>Editor group by</strong><br>To group by a tag click the plus icon after the <code>GROUP BY ($interval)</code> text. Pick a tag from the dropdown that appears. You can remove the group by by clicking on the tag and then select <code>--remove group by--</code> from the dropdown.</p>
+<p>Alias patterns</p>
+<ul>
+<li><code>$m</code> = replaced with measurement name</li>
+<li><code>$measurement</code> = replaced with measurement name</li>
+<li><code>$col</code> = replaced with column name</li>
+<li><code>$tag_hostname</code> = replaced with the value of the hostname tag</li>
+<li>You can also use <code>[[tag_hostname]]</code> pattern replacement syntax</li>
+</ul>
+<h2 id="Variable_Templates"><a href="#Variable_Templates" class="headerlink" title="Variable Templates"></a>Variable Templates</h2><p>Below is the snapshot on the page to configure the variable template</p>
+<p><img src="/images/grafana/template.png" alt=""></p>
+<p>You can create a template variable in Grafana and have that variable filled with values from any InfluxDB metric exploration query. You can then use this variable in your InfluxDB metric queries. For example you can have a variable that contains all values for tag topologyName if you specify a query like this in the templating edit view.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.&#9;SHOW TAG VALUES WITH KEY = &#34;topologyName&#34;</span><br></pre></td></tr></table></figure>
+<p>You can also create nested variables. For example if you had another variable, for example env. Then you could have the hosts variable only show hosts from the current selected region with a query like this:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1.&#9;SHOW TAG VALUES WITH KEY = &#34;hostname&#34;  WHERE env =~ /$env/</span><br></pre></td></tr></table></figure>
+<p>Additionally, the order of each variable template matters. You may refer to a former variable’s query results in a latter defined variable.</p>
+<h2 id="Little_Tips"><a href="#Little_Tips" class="headerlink" title="Little Tips"></a>Little Tips</h2><p>Basically, query and template variable are very easy to edit as long as you know what and where to find your data. Here is a few tipping points I summarized when I configured my Grafana.</p>
+<ol>
+<li>Try to use tag to generate the expressive name for measurement/table, this will make your life easier when you create template variable and form your own query</li>
+<li>When you want to select the multiple value in template variable, make sure you check All value tab and choose regex value for both <em><strong>multi format</strong></em> and <strong><em>all format</em></strong></li>
+<li>In the retention policy from InfluxDB, you configure the frequency you perform a housekeeping procedure to clean up out-dated data.</li>
+<li>For timer measurements, you will find a lot sub-metrics such as <strong>mean, last, max, or min</strong>. They are calculated by StatsD from a whole data set received in one flushing period. Ensure select the correct one when you query your graph.</li>
+</ol>
+</div></article></div></section><footer><div class="paginator"><a class="prev"></a><a href="/blog/Grafana-Stack-with-InfluxDB/" class="next">Older</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'chenxili';
+var disqus_identifier = 'blog/Querying-and-Templating-on-Grafana-with-InfluxDB/';
+var disqus_title = 'Querying and Templating on Grafana with InfluxDB';
+var disqus_url = 'http://moremeds.github.io/blog/Querying-and-Templating-on-Grafana-with-InfluxDB/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//chenxili.disqus.com/count.js" async></script></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-71835528-1",'auto');ga('send','pageview');</script><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
