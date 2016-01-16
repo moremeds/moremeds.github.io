@@ -80,3 +80,12 @@ github_repo: moremeds.github.io
 github_repo_count: 3
 github_show_profile_link: true
 github_skip_forks: true
+
+marked:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: true
+  smartLists: true
+  smartypants: true

@@ -1,6 +1,6 @@
 {
   "name": "chenxi-hexo-site",
-  "description" : "bloging about my tech",
+  "description": "bloging about my tech",
   "version": "0.0.1",
   "private": true,
   "hexo": {
@@ -19,7 +19,7 @@
     "hexo-generator-tag": "^0.1.2",
     "hexo-renderer-ejs": "^0.1.0",
     "hexo-renderer-jade": "^0.1.0",
-    "hexo-renderer-marked": "^0.2.6",
+    "hexo-renderer-marked": "^0.2.8",
     "hexo-renderer-stylus": "^0.3.0",
     "hexo-server": "^0.1.2"
   }

@@ -2,6 +2,7 @@
 title: Grafana Stack with InfluxDB
 date: 2016-01-03 19:22:37
 tags: [grafana, influxdb, statsd]
+categories: [tutorial]
 ---
 
 Collecting and analyzing metrics are the key to understand a system’s runtime behaviors and thus to provide a better guideline of optimization. As the user of a metrics system, you might want to collect metric and event with simple APIs, retrieve historical metric data, and view visualized metrics statistics.
