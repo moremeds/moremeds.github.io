@@ -2,9 +2,10 @@ menu:
     Blog: /
     Archives: /archives
     rss: /atom.xml
+    linkedin: https://www.linkedin.com/in/chenxiliuk
     Github: https://github.com/moremeds
 
-favicon: /favicon.ico
+favicon: /satellite.ico
 logo: /logo.ico
 
 # comment

@@ -7,6 +7,8 @@ categories: [tutorial]
 
 Using InfluxDB on Grafana is not quite common comparing to Graphite, another data source engine. Different data sources require different settings. The configuration process includes locating the measurements, finding the correct stats info, and filtering the result with refined condition.
 
+
+
  <!-- more -->
 
 ## Query
