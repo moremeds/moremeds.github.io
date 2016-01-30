@@ -1,0 +1,57 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> JVM Basic Structure · Chenxi LI</title><meta name="description" content="JVM Basic Structure - Chenxi Li"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/satellite.ico"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><header><a href="/" class="logo-link"><img src="/logo.ico"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li><li class="nav-list-item"><a href="https://www.linkedin.com/in/chenxiliuk" target="_blank" class="nav-list-link">LINKEDIN</a></li><li class="nav-list-item"><a href="https://github.com/moremeds" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">JVM Basic Structure</h1><div class="post-meta"><div class="post-time">Jan 19, 2016</div></div><div class="post-content"><p>It’s been a long time before I want to summary the structural basics within the JVM. The graph below shows the relationship among those components, which can be cataloged into two sections, ones are private to individual thread, and ones are independent to threads.</p>
+<p><img src="/images/JVM_Internal_Architecture_small.png" alt=""></p>
+<a id="more"></a>
+<h1 id="Per_Thread"><a href="#Per_Thread" class="headerlink" title="Per Thread"></a>Per Thread</h1><p>A thread is a thread of execution in a program. The JVM allows an application to have multiple threads of execution running concurrently.</p>
+<h2 id="System_Threads"><a href="#System_Threads" class="headerlink" title="System Threads"></a>System Threads</h2><p>JVM System threads run along with the main thread in the background, created by invoking <code>public static void main(String[])</code>. The main background system threads in the Hotspot JVM are:</p>
+<ul>
+<li><strong>VM Thread</strong>: waits for operations that require the JVM to reach a safe point such as: stop-world-gc, thread stack dumps.</li>
+<li><strong>Periodic Task Thread</strong>: is responsible for timer related events.</li>
+<li><strong>GC Thread</strong>: takes care of different garbage collection activities.</li>
+<li><strong>Compiler Thread</strong>: compiles byte code to native code at runtime.</li>
+<li><strong>Signal Dispatcher</strong>: receives signals sent to the JVM process and handle them inside the JVM by calling the appropriate JVM methods.</li>
+</ul>
+<h2 id="Thread_of_Execution"><a href="#Thread_of_Execution" class="headerlink" title="Thread of Execution"></a>Thread of Execution</h2><p>Each thread of execution has the following components.</p>
+<ul>
+<li><strong>Program Counter(PC)</strong>: keeps track of where JVM is executing instruction. PC will in fact be pointing at a memory address in <em>Method Area</em>.</li>
+<li><strong>Stack</strong>: each thread has its own stack that holds frames for each method executing on the thread.</li>
+<li><strong>Native Stack</strong>: not all JVM supports native stack.</li>
+<li><strong>Stack Restriction</strong>: if a thread requires a larger stack than allowed, <code>StackOverflowError</code> will be thrown. If a thread requires a new frame and no memory to allocate, <code>OutOfMemoryError</code> will be thrown. Meanwhile, the size of the stack can be configurable, either dynamic or static.</li>
+</ul>
+<h2 id="Frame"><a href="#Frame" class="headerlink" title="Frame"></a>Frame</h2><p>Frame is created when method is invoked, and be pushed to the top of stack. It will be popped when the methods returns normally or there is an uncaught exception. In each frame, it contains:</p>
+<ul>
+<li><strong>Local Variable Array</strong>: contains all the variables used during the execution of the method. Reference to <code>this</code>, input parameters, and other local variables are included.</li>
+<li><strong>Operand Stack</strong>: is used during the execution of byte code instructions like the general-purpose registers used in CPU.</li>
+<li><strong>Dynamic Linking</strong>: Each frame contains a reference to the runtime constant pool, which references to the class of this method being executed for that frame.</li>
+</ul>
+<h1 id="Common_Components"><a href="#Common_Components" class="headerlink" title="Common Components"></a>Common Components</h1><p>To facilitate the memory management, shared area can be heap or non-heap, which are divided into three sections: <strong>Young Generation</strong>(eden and survivor), <strong>Old Generation</strong>(tenured generation), and <strong>Permanent Generation</strong>(no longer in Java 8).</p>
+<h2 id="Heap"><a href="#Heap" class="headerlink" title="Heap"></a>Heap</h2><p>Heap is used to allocate class instances and arrays at runtime. Unlike the primitive variables and references in the local variable array, objects are always stored on the heap so they are not removed when a method ends. Instead objects can only be removed by the garbage collector.</p>
+<h2 id="Non-Heap"><a href="#Non-Heap" class="headerlink" title="Non-Heap"></a>Non-Heap</h2><p>Objects that are logically considered as part of the JVM mechanics are not created on the heap. Non-Heap memory includes:</p>
+<ul>
+<li>Permanent Generation: the <em>method area</em> and <em>interned strings</em></li>
+<li>Code Cache: used for compilation and storage of methods that have been comiled to native code by the JIT compiler.</li>
+</ul>
+<h2 id="Method_Area"><a href="#Method_Area" class="headerlink" title="Method Area"></a>Method Area</h2><p>All threads share the same method area, so access to the method area data and the process of dynamic linking must be thread safe. Method area stores per-class information such as:</p>
+<ul>
+<li>Classloader Reference</li>
+<li>Run time constant pool</li>
+<li>Field data</li>
+<li>Method data</li>
+<li>Method code</li>
+</ul>
+<h2 id="Memory_Management"><a href="#Memory_Management" class="headerlink" title="Memory Management"></a>Memory Management</h2><ol>
+<li>New objects created into the young generation</li>
+<li>Minor garbage collection in young generation. Alive objects will be moved from eden space to the survivor spaces (more detailed space can be specified).</li>
+<li>Major garbage collection causes the application threads to pause. Alive objects will be moved across generations, young to old.</li>
+<li>Permanent generation is collected every time the old generation is collected. They are both collected when either is full.</li>
+<li>PermGen is replaced with Metaspace which is very similar in Java 8. Main difference is that Metaspace re-sizes dynamically i.e., It can expand at runtime. Java Metaspace space: unbounded (default)</li>
+</ol>
+<h2 id="Just_in_Time__28JIT_29_Compilation"><a href="#Just_in_Time__28JIT_29_Compilation" class="headerlink" title="Just in Time (JIT) Compilation"></a>Just in Time (JIT) Compilation</h2><p>Just-in-time (JIT) compiler is a program that turns Java bytecode (a program that contains instructions that must be interpreted) into instructions that can be sent directly to the processor.</p>
+</div></article></div></section><footer><div class="paginator"><a href="/blog/Querying-and-Templating-on-Grafana-with-InfluxDB/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'chenxili';
+var disqus_identifier = 'blog/JVM-Basic-Struture/';
+var disqus_title = 'JVM Basic Structure';
+var disqus_url = 'http://moremeds.github.io/blog/JVM-Basic-Struture/';
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();</script><script id="dsq-count-scr" src="//chenxili.disqus.com/count.js" async></script><div class="copyright"><p>© undefined - 2016 <a href="http://moremeds.github.io">Chenxi Li</a>. All rights reserves.</p></div></footer><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-71835528-1",'auto');ga('send','pageview');</script><script src="https://cdn.bootcss.com/mathjax/2.5.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script></body></html>
