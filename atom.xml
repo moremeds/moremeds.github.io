@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Hack of tech]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://moremeds.github.io/"/>
-  <updated>2016-01-30T23:52:50.000Z</updated>
+  <updated>2016-01-31T22:27:25.000Z</updated>
   <id>http://moremeds.github.io/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <link href="http://moremeds.github.io/blog/JVM-Basic-Struture/"/>
     <id>http://moremeds.github.io/blog/JVM-Basic-Struture/</id>
     <published>2016-01-19T21:44:04.000Z</published>
-    <updated>2016-01-30T23:52:50.000Z</updated>
-    <content type="html"><![CDATA[<p>It’s been a long time before I want to summary the structural basics within the JVM. The graph below shows the relationship among those components, which can be cataloged into two sections, ones are private to individual thread, and ones are independent to threads.</p>
+    <updated>2016-01-31T22:27:25.000Z</updated>
+    <content type="html"><![CDATA[<p>It’s been a long time before I want to summarise the structural basics within the JVM. The graph below shows the relationship among those components, which can be cataloged into two sections, ones are private to individual thread, and ones are independent to threads.</p>
 <p><img src="/images/JVM_Internal_Architecture_small.png" alt=""></p>
 <a id="more"></a>
 <h1 id="Per_Thread"><a href="#Per_Thread" class="headerlink" title="Per Thread"></a>Per Thread</h1><p>A thread is a thread of execution in a program. The JVM allows an application to have multiple threads of execution running concurrently.</p>
@@ -54,7 +54,7 @@
 </ul>
 <h2 id="Method_Area"><a href="#Method_Area" class="headerlink" title="Method Area"></a>Method Area</h2><p>All threads share the same method area, so access to the method area data and the process of dynamic linking must be thread safe. Method area stores per-class information such as:</p>
 <ul>
-<li>Classloader Reference</li>
+<li>ClassLoader Reference</li>
 <li>Run time constant pool</li>
 <li>Field data</li>
 <li>Method data</li>
@@ -70,7 +70,7 @@
 <h2 id="Just_in_Time__28JIT_29_Compilation"><a href="#Just_in_Time__28JIT_29_Compilation" class="headerlink" title="Just in Time (JIT) Compilation"></a>Just in Time (JIT) Compilation</h2><p>Just-in-time (JIT) compiler is a program that turns Java bytecode (a program that contains instructions that must be interpreted) into instructions that can be sent directly to the processor.</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>It’s been a long time before I want to summary the structural basics within the JVM. The graph below shows the relationship among those components, which can be cataloged into two sections, ones are private to individual thread, and ones are independent to threads.</p>
+    <![CDATA[<p>It’s been a long time before I want to summarise the structural basics within the JVM. The graph below shows the relationship among those components, which can be cataloged into two sections, ones are private to individual thread, and ones are independent to threads.</p>
 <p><img src="/images/JVM_Internal_Architecture_small.png" alt=""></p>]]>
     
     </summary>
@@ -136,7 +136,7 @@
     <link href="http://moremeds.github.io/blog/Grafana-Stack-with-InfluxDB/"/>
     <id>http://moremeds.github.io/blog/Grafana-Stack-with-InfluxDB/</id>
     <published>2016-01-03T19:22:37.000Z</published>
-    <updated>2016-01-30T20:58:09.000Z</updated>
+    <updated>2016-01-31T16:44:48.000Z</updated>
     <content type="html"><![CDATA[<p>Collecting and analyzing metrics are the key to understand a system’s runtime behaviors and thus to provide a better guideline of optimization. As the user of a metrics system, you might want to collect metric and event with simple APIs, retrieve historical metric data, and view visualized metrics statistics.</p>
 <p>This article shows you how to build a metric system with <a href="https://github.com/etsy/statsd" target="_blank" rel="external">StatsD</a>, <a href="https://influxdata.com/" target="_blank" rel="external">influxdb</a>, and <a href="http://grafana.org/" target="_blank" rel="external">Grafana</a>, as an example metrics system that composes of a client, a data storage, and visualization UI. There are many available open source packages.</p>
 <p><img src="/images/grafana/LogicFlow.png" width="60%" height="60%"></p>
