@@ -23,7 +23,7 @@ Let’s briefly discuss the software collection before moving on to configuratio
 ## StatsD
 When the StatsD is placed in a suitable location, please edit `config.js` to configure StatsD to send data to InfluxDB. Possible example is as below:
 
-``` javascript
+```js
 1.{
 2.    influxdb: {
 3.        host: '127.0.0.1', // InfluxDB host. (default 127.0.0.1)
@@ -50,7 +50,7 @@ When the StatsD is placed in a suitable location, please edit `config.js` to con
 ```
 Please note that the key word **backends**, which specifies the destination of the metrics data, and the dependency could be installed as below:
 
-``` bash
+```bash
 1.$ cd statd
 2.
 3.$ npm install statsd-influxdb-backend -d

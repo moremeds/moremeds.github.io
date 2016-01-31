@@ -1,5 +1,4 @@
 menu:
-    Blog: /
     Archives: /archives
     rss: /atom.xml
     linkedin: https://www.linkedin.com/in/chenxiliuk
@@ -10,6 +9,6 @@ logo: /logo.ico
 
 # comment
 disqus: chenxili
-duoshuo:
 
 ga: UA-71835528-1
+
